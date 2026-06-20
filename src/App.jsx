@@ -147,10 +147,37 @@ export default function App() {
             </ol>
           </div>
           <div>
-            <h2 className="font-semibold text-gray-800 text-sm mb-1">Instagram video downloader</h2>
+            <h2 className="font-semibold text-gray-800 text-sm mb-1">Instagram Reels downloader</h2>
             <p>
-              ClipSave supports Instagram Reels and video posts (experimental). Paste the URL of a public Instagram video to download it. Private account videos cannot be downloaded. Instagram support may occasionally be unavailable depending on Instagram's platform changes.
+              ClipSave supports Instagram Reels and video posts. Paste the URL of a public Instagram video to download it as MP4. Private account videos cannot be downloaded. Instagram support may occasionally be unavailable depending on platform changes.
             </p>
+          </div>
+        </div>
+
+        {/* FAQ section */}
+        <div className="bg-white rounded-2xl border border-gray-200 p-6">
+          <h2 className="font-semibold text-gray-800 text-sm mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4 text-xs text-gray-500 leading-relaxed">
+            <div>
+              <h3 className="font-semibold text-gray-700 mb-1">Is ClipSave free to use?</h3>
+              <p>Yes — ClipSave is completely free. No account, no limits, no hidden fees. Just paste a link and download.</p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-700 mb-1">Does ClipSave work on iPhone and Android?</h3>
+              <p>Yes. ClipSave works on any device with a web browser — iPhone, Android, Mac, and PC. No app download needed. On iPhone, after downloading, the video saves to your Files app; you can then move it to Photos.</p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-700 mb-1">Why use ClipSave instead of the TikTok save button?</h3>
+              <p>TikTok's native save adds a watermark (your username overlay) to every video. ClipSave fetches the original source file so you get a clean, watermark-free MP4 — great for repurposing content or keeping a personal archive.</p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-700 mb-1">What video quality does ClipSave download?</h3>
+              <p>ClipSave fetches the highest-quality version available — typically HD (720p or 1080p) for TikTok videos, depending on how the creator uploaded them.</p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-700 mb-1">Is it legal to download TikTok videos?</h3>
+              <p>Downloading videos for personal use is generally fine. Always respect creators' rights — don't re-upload someone else's content without permission or claim it as your own.</p>
+            </div>
           </div>
         </div>
 
