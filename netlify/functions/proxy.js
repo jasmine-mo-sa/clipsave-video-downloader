@@ -18,10 +18,10 @@ exports.handler = async function (event) {
   }
 
   try {
-    // Pick the right Referer: tikwm.com videos need tikwm.com; direct TikTok CDN URLs need tiktok.com
     const isTikwm = url.includes('tikwm.com')
-    const referer = isTikwm ? 'https://www.tikwm.com/' : 'https://www.tiktok.com/'
-    const origin  = isTikwm ? 'https://www.tikwm.com'  : 'https://www.tiktok.com'
+    const isInstagram = url.includes('instagram.com') || url.includes('cdninstagram.com') || url.includes('fbcdn.net')
+    const referer = isTikwm ? 'https://www.tikwm.com/' : isInstagram ? 'https://www.instagram.com/' : 'https://www.tiktok.com/'
+    const origin  = isTikwm ? 'https://www.tikwm.com'  : isInstagram ? 'https://www.instagram.com' : 'https://www.tiktok.com'
 
     const response = await fetch(url, {
       headers: {

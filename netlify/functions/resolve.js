@@ -101,6 +101,39 @@ async function resolveInstagram(url) {
   }
 }
 
+async function resolveYouTube(url) {
+  // Uses yt-dlp-web / cobalt API (cobalt.tools public instance) to resolve YouTube Shorts.
+  // Falls back to a 422 with a clear message if the upstream is unavailable.
+  try {
+    const res = await fetch('https://api.cobalt.tools/api/json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({ url, vQuality: 'max', filenamePattern: 'basic' }),
+    })
+    const json = await res.json()
+
+    if (json.status === 'stream' || json.status === 'redirect') {
+      return jsonRes(200, {
+        platform: 'youtube',
+        title: json.filename || 'YouTube Video',
+        thumbnail: null,
+        videoUrl: json.url,
+        author: '',
+        duration: null,
+      })
+    }
+
+    return jsonRes(422, {
+      error: json.text || 'Could not resolve this YouTube video. Make sure it is a public video or Shorts link.',
+    })
+  } catch (err) {
+    return jsonRes(500, { error: 'YouTube resolution failed: ' + err.message })
+  }
+}
+
 function jsonRes(status, body) {
   return {
     statusCode: status,
