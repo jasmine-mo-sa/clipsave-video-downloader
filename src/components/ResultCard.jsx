@@ -14,11 +14,11 @@ export default function ResultCard({ result, onReset }) {
   const platform = PLATFORM_LABELS[result.platform] || { label: result.platform, color: 'bg-gray-200 text-gray-800' }
 
   function downloadVideo() {
+    const filename = `${result.platform}-${result.author || 'video'}.mp4`
+    const proxyUrl = `/.netlify/functions/proxy?url=${encodeURIComponent(result.videoUrl)}&filename=${encodeURIComponent(filename)}`
     const a = document.createElement('a')
-    a.href = result.videoUrl
-    a.download = 'video.mp4'
-    a.target = '_blank'
-    a.rel = 'noreferrer'
+    a.href = proxyUrl
+    a.download = filename
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
@@ -89,7 +89,7 @@ export default function ResultCard({ result, onReset }) {
 
       <div className="border-t border-gray-100 px-5 py-2.5 bg-gray-50">
         <p className="text-xs text-gray-400">
-          If the video opens in your browser instead of downloading, right-click on the video → <strong>Save video as</strong>.
+          Video downloads directly to your device. Works on iPhone, Android, Mac, and PC.
         </p>
       </div>
     </div>
