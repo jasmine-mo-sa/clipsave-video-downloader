@@ -13,16 +13,8 @@ function fmtDuration(seconds) {
 export default function ResultCard({ result, onReset }) {
   const platform = PLATFORM_LABELS[result.platform] || { label: result.platform, color: 'bg-gray-200 text-gray-800' }
 
-  function downloadVideo() {
-    const filename = `${result.platform}-${result.author || 'video'}.mp4`
-    const proxyUrl = `/.netlify/functions/proxy?url=${encodeURIComponent(result.videoUrl)}&filename=${encodeURIComponent(filename)}`
-    const a = document.createElement('a')
-    a.href = proxyUrl
-    a.download = filename
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-  }
+  const filename = `${result.platform}-${(result.author || 'video').replace(/[^a-z0-9_-]/gi, '_')}.mp4`
+  const proxyUrl = `/.netlify/functions/proxy?url=${encodeURIComponent(result.videoUrl)}&filename=${encodeURIComponent(filename)}`
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
@@ -58,16 +50,17 @@ export default function ResultCard({ result, onReset }) {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <button
-              onClick={downloadVideo}
+            <a
+              href={proxyUrl}
+              download={filename}
               className="px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold
-                         hover:bg-indigo-700 active:scale-95 transition-all flex items-center gap-1.5"
+                         hover:bg-indigo-700 active:scale-95 transition-all flex items-center gap-1.5 no-underline"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
               </svg>
               Download Video
-            </button>
+            </a>
             <a
               href={result.videoUrl}
               target="_blank"
