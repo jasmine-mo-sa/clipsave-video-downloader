@@ -30,6 +30,10 @@ exports.handler = async function (event) {
 }
 
 async function resolveTikTok(url) {
+  // tikwm.com sometimes returns relative paths like /video/media/play/...
+  // Ensure all URLs are absolute before returning them.
+  const toAbs = (u) => (u && !u.startsWith('http') ? 'https://www.tikwm.com' + u : u)
+
   try {
     const res = await fetch('https://www.tikwm.com/api/', {
       method: 'POST',
@@ -48,9 +52,9 @@ async function resolveTikTok(url) {
     return jsonRes(200, {
       platform: 'tiktok',
       title: d.title || 'TikTok Video',
-      thumbnail: d.cover || null,
-      videoUrl: d.play || null,       // no-watermark HD
-      videoUrlWm: d.wmplay || null,   // with watermark (fallback)
+      thumbnail: toAbs(d.cover) || null,
+      videoUrl: toAbs(d.hdplay || d.play) || null,   // no-watermark, prefer HD
+      videoUrlWm: toAbs(d.wmplay) || null,            // with watermark (fallback)
       author: d.author?.nickname || d.author?.unique_id || '',
       duration: d.duration || null,
     })

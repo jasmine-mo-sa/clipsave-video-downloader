@@ -18,11 +18,16 @@ exports.handler = async function (event) {
   }
 
   try {
+    // Pick the right Referer: tikwm.com videos need tikwm.com; direct TikTok CDN URLs need tiktok.com
+    const isTikwm = url.includes('tikwm.com')
+    const referer = isTikwm ? 'https://www.tikwm.com/' : 'https://www.tiktok.com/'
+    const origin  = isTikwm ? 'https://www.tikwm.com'  : 'https://www.tiktok.com'
+
     const response = await fetch(url, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1',
-        'Referer': 'https://www.tiktok.com/',
-        'Origin': 'https://www.tiktok.com',
+        'Referer': referer,
+        'Origin': origin,
         'Accept': 'video/mp4,video/*;q=0.9,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.9',
       },
