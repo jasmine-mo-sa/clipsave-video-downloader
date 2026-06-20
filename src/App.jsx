@@ -3,6 +3,7 @@ import Header from './components/Header'
 import UrlInput from './components/UrlInput'
 import ResultCard from './components/ResultCard'
 import EmailSignup from './components/EmailSignup'
+import TipButton from './components/TipButton'
 
 export default function App() {
   const [loading, setLoading] = useState(false)
@@ -182,6 +183,7 @@ export default function App() {
         </div>
 
         <EmailSignup />
+        <TipButton />
       </main>
 
       {/* Hidden iframe absorbs Google Form response so the page never navigates away */}
