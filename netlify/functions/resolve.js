@@ -22,7 +22,11 @@ exports.handler = async function (event) {
     return resolveInstagram(url)
   }
 
-  return jsonRes(400, { error: 'Unsupported URL. Please paste a TikTok or Instagram video link.' })
+  if (/youtube\.com\/shorts|youtu\.be|youtube\.com\/watch/i.test(url)) {
+    return resolveYouTube(url)
+  }
+
+  return jsonRes(400, { error: 'Unsupported URL. Please paste a TikTok, Instagram, or YouTube Shorts link.' })
 }
 
 async function resolveTikTok(url) {

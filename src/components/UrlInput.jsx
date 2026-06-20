@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 export default function UrlInput({ onSubmit, loading }) {
   const [url, setUrl] = useState('')
+  const inputRef = useRef(null)
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -12,9 +13,15 @@ export default function UrlInput({ onSubmit, loading }) {
   async function handlePaste() {
     try {
       const text = await navigator.clipboard.readText()
-      if (text) setUrl(text.trim())
+      if (text) {
+        setUrl(text.trim())
+        return
+      }
     } catch {
-      // clipboard access denied — user will paste manually
+      // clipboard permission denied — focus the input so user can paste manually
+    }
+    if (inputRef.current) {
+      inputRef.current.focus()
     }
   }
 
@@ -23,6 +30,7 @@ export default function UrlInput({ onSubmit, loading }) {
       <div className="flex flex-col sm:flex-row gap-2">
         <div className="relative flex-1">
           <input
+            ref={inputRef}
             type="url"
             value={url}
             onChange={e => setUrl(e.target.value)}
