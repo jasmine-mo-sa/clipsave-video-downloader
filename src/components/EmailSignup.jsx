@@ -1,13 +1,7 @@
 import { useState } from 'react'
 
-// TODO: Replace with the real Google Form action URL and entry field name after creating the form.
-// Steps:
-//   1. Create a Google Form with one Email field.
-//   2. Right-click the form's "Submit" button → Inspect → note the <form action="..."> URL.
-//   3. Note the email input's name attribute (e.g. "entry.123456789").
-//   4. Replace FORM_ACTION and ENTRY_ID below.
-const FORM_ACTION = 'https://docs.google.com/forms/d/e/REPLACE_WITH_FORM_ID/formResponse'
-const ENTRY_ID = 'entry.REPLACE_WITH_ENTRY_ID'
+const FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSfOhBJEmt0FZM5Rz_HLwcWyRFpopotLb3s_W92PwC4wjhqtow/formResponse'
+const ENTRY_ID = 'entry.343124845'
 
 export default function EmailSignup() {
   const [signedUp, setSignedUp] = useState(false)
