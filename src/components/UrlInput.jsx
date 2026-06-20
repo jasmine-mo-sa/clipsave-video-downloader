@@ -10,18 +10,29 @@ export default function UrlInput({ onSubmit, loading }) {
     if (trimmed) onSubmit(trimmed)
   }
 
-  async function handlePaste() {
+  function handleNativePaste(e) {
+    const text = e.clipboardData?.getData('text') || ''
+    if (text.trim()) {
+      e.preventDefault()
+      setUrl(text.trim())
+    }
+  }
+
+  async function handlePasteButton() {
+    // Try the clipboard API first (works when permission is granted)
     try {
       const text = await navigator.clipboard.readText()
-      if (text) {
+      if (text.trim()) {
         setUrl(text.trim())
         return
       }
     } catch {
-      // clipboard permission denied — focus the input so user can paste manually
+      // Permission denied or API unavailable — fall through to manual paste
     }
+    // Focus the input so the user can paste manually (Cmd+V / long-press Paste)
     if (inputRef.current) {
       inputRef.current.focus()
+      inputRef.current.select()
     }
   }
 
@@ -31,11 +42,15 @@ export default function UrlInput({ onSubmit, loading }) {
         <div className="relative flex-1">
           <input
             ref={inputRef}
-            type="url"
+            type="text"
             value={url}
             onChange={e => setUrl(e.target.value)}
-            placeholder="Paste a TikTok or Instagram video link…"
-            required
+            onPaste={handleNativePaste}
+            placeholder="Paste a TikTok, Instagram or YouTube Shorts link…"
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck={false}
             className="w-full px-4 py-3 pr-24 text-sm border border-gray-300 rounded-xl
                        focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent
                        placeholder:text-gray-400 bg-white"
@@ -43,7 +58,7 @@ export default function UrlInput({ onSubmit, loading }) {
           {!url && (
             <button
               type="button"
-              onClick={handlePaste}
+              onClick={handlePasteButton}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-indigo-600
                          font-medium hover:text-indigo-800 transition-colors px-1"
             >
