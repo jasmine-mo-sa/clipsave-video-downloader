@@ -15,7 +15,7 @@ export default function App() {
     setResult(null)
     setError(null)
     try {
-      const res = await fetch(`/.netlify/functions/resolve?url=${encodeURIComponent(url)}`)
+      const res = await fetch(`/api/resolve?url=${encodeURIComponent(url)}`)
       const data = await res.json()
       if (!res.ok || data.error) {
         setError(data.error || 'Something went wrong. Please try again.')

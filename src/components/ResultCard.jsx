@@ -14,7 +14,7 @@ export default function ResultCard({ result, onReset }) {
   const platform = PLATFORM_LABELS[result.platform] || { label: result.platform, color: 'bg-gray-200 text-gray-800' }
 
   const filename = `${result.platform}-${(result.author || 'video').replace(/[^a-z0-9_-]/gi, '_')}.mp4`
-  const proxyUrl = `/.netlify/functions/proxy?url=${encodeURIComponent(result.videoUrl)}&filename=${encodeURIComponent(filename)}`
+  const proxyUrl = `/api/proxy?url=${encodeURIComponent(result.videoUrl)}&filename=${encodeURIComponent(filename)}`
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">

@@ -8,7 +8,7 @@ export default function TipButton() {
     setLoading(true)
     setError(null)
     try {
-      const res = await fetch('/.netlify/functions/tip', { method: 'POST' })
+      const res = await fetch('/api/tip', { method: 'POST' })
       const data = await res.json()
       if (data.url) {
         window.location.href = data.url
