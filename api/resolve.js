@@ -67,47 +67,8 @@ async function resolveInstagram(url, res) {
   }
 }
 
-async function resolveYouTube(url, res) {
-  // y2mate API for YouTube Shorts resolution
-  try {
-    const analyze = await fetch('https://www.y2mate.com/mates/analyzeV2/ajax', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      },
-      body: new URLSearchParams({ k_query: url, k_page: 'home', hl: 'en', q_auto: 0 }).toString(),
-    })
-    const json = await analyze.json()
-
-    if (json.status !== 'Ok' || !json.vid) {
-      return res.status(422).json({ error: 'Could not resolve this YouTube video. Make sure it is a public Shorts link.' })
-    }
-
-    // Fetch the mp4 download link
-    const convert = await fetch('https://www.y2mate.com/mates/convertV2/index', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      },
-      body: new URLSearchParams({ vid: json.vid, k: json.links?.mp4?.['auto']?.k || Object.values(json.links?.mp4 || {})[0]?.k }).toString(),
-    })
-    const cjson = await convert.json()
-
-    if (cjson.status !== 'converted' || !cjson.dlink) {
-      return res.status(422).json({ error: 'Could not extract this YouTube video. Please try again.' })
-    }
-
-    return res.status(200).json({
-      platform: 'youtube',
-      title: json.title || 'YouTube Video',
-      thumbnail: `https://i.ytimg.com/vi/${json.vid}/hqdefault.jpg`,
-      videoUrl: cjson.dlink,
-      author: '',
-      duration: null,
-    })
-  } catch (err) {
-    return res.status(500).json({ error: 'YouTube resolution failed: ' + err.message })
-  }
+async function resolveYouTube(_url, res) {
+  return res.status(422).json({
+    error: 'YouTube Shorts are not supported yet. Paste a TikTok or Instagram link instead.',
+  })
 }
