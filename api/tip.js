@@ -11,6 +11,18 @@ export default async function handler(req, res) {
   const key = process.env.STRIPE_SECRET_KEY
   if (!key) return res.status(503).json({ error: 'Payments not configured yet.' })
 
+  // Connectivity check — raw fetch to Stripe before using SDK
+  try {
+    const ping = await fetch('https://api.stripe.com/v1/charges?limit=1', {
+      headers: { Authorization: `Bearer ${key}` }
+    })
+    if (!ping.ok && ping.status === 401) {
+      return res.status(401).json({ error: 'Stripe key is invalid or not authorised.' })
+    }
+  } catch (pingErr) {
+    return res.status(502).json({ error: 'Cannot reach Stripe API: ' + pingErr.message })
+  }
+
   try {
     const stripe = new Stripe(key, { maxNetworkRetries: 0, timeout: 8000 })
     const session = await stripe.checkout.sessions.create({
