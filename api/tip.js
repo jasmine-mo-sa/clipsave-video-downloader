@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   if (!key) return res.status(503).json({ error: 'Payments not configured yet.' })
 
   try {
-    const stripe = new Stripe(key)
+    const stripe = new Stripe(key, { maxNetworkRetries: 0, timeout: 8000 })
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       line_items: [{
