@@ -51,7 +51,7 @@ export default function UrlInput({ onSubmit, loading }) {
             autoCorrect="off"
             autoCapitalize="off"
             spellCheck={false}
-            className="w-full px-4 py-3 pr-24 text-sm border border-gray-300 rounded-xl
+            className="w-full px-4 py-3 pr-24 text-sm text-gray-900 border border-gray-300 rounded-xl
                        focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent
                        placeholder:text-gray-400 bg-white"
           />
