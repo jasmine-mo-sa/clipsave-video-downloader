@@ -11,10 +11,12 @@ export default async function handler(req, res) {
   if (!url) return res.status(400).json({ error: 'Missing url parameter.' })
 
   if (/tiktok\.com|vm\.tiktok\.com|vt\.tiktok\.com/i.test(url)) return resolveTikTok(url, res)
-  if (/instagram\.com|instagr\.am/i.test(url)) return resolveInstagram(url, res)
+  if (/instagram\.com|instagr\.am/i.test(url)) {
+    return res.status(422).json({ error: 'Instagram downloads are coming soon. Please paste a TikTok link instead.' })
+  }
   if (/youtube\.com\/shorts|youtu\.be|youtube\.com\/watch/i.test(url)) return resolveYouTube(url, res)
 
-  return res.status(400).json({ error: 'Unsupported URL. Please paste a TikTok, Instagram, or YouTube Shorts link.' })
+  return res.status(400).json({ error: 'Unsupported URL. Please paste a TikTok link.' })
 }
 
 async function resolveTikTok(url, res) {
@@ -44,31 +46,8 @@ async function resolveTikTok(url, res) {
   }
 }
 
-async function resolveInstagram(url, res) {
-  try {
-    const r = await fetch('https://snapsave.app/action.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Referer': 'https://snapsave.app/',
-        'Origin': 'https://snapsave.app',
-      },
-      body: new URLSearchParams({ url }).toString(),
-    })
-    const text = await r.text()
-    const mp4Match = text.match(/href="(https:\/\/[^"]*\.mp4[^"]*)"/i)
-    if (mp4Match) {
-      return res.status(200).json({ platform: 'instagram', title: 'Instagram Video', thumbnail: null, videoUrl: mp4Match[1], author: '', duration: null })
-    }
-    return res.status(422).json({ error: 'Could not extract this Instagram video. The post may be private, or try again in a moment.' })
-  } catch {
-    return res.status(500).json({ error: 'Instagram resolution failed. Please try again.' })
-  }
-}
-
 async function resolveYouTube(_url, res) {
   return res.status(422).json({
-    error: 'YouTube Shorts are not supported yet. Paste a TikTok or Instagram link instead.',
+    error: 'YouTube Shorts are not supported yet. Paste a TikTok link instead.',
   })
 }

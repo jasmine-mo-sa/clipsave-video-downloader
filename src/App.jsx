@@ -45,13 +45,13 @@ export default function App() {
             Free Video Downloader
           </h1>
           <p className="text-indigo-200 text-sm sm:text-base max-w-lg mx-auto">
-            Save TikTok and Instagram videos without watermarks — free, instant, no account needed.
+            Save TikTok videos without watermarks — free, instant, no account needed.
           </p>
           <div className="pt-4">
             <UrlInput onSubmit={handleSubmit} loading={loading} />
           </div>
           <p className="text-indigo-300 text-xs pt-1">
-            Supports TikTok · Instagram (experimental)
+            Supports TikTok · Instagram (coming soon)
           </p>
         </div>
       </div>
@@ -85,7 +85,7 @@ export default function App() {
               <div className="text-2xl mb-2">📋</div>
               <h3 className="font-semibold text-gray-800 mb-1 text-sm">1. Paste the link</h3>
               <p className="text-gray-500 text-xs leading-relaxed">
-                Copy the video URL from TikTok or Instagram and paste it into the box above.
+                Copy the video URL from TikTok and paste it into the box above.
               </p>
             </div>
             <div className="bg-white rounded-2xl border border-gray-200 p-5">
@@ -148,9 +148,9 @@ export default function App() {
             </ol>
           </div>
           <div>
-            <h2 className="font-semibold text-gray-800 text-sm mb-1">Instagram Reels downloader</h2>
+            <h2 className="font-semibold text-gray-800 text-sm mb-1">Instagram Reels downloader (coming soon)</h2>
             <p>
-              ClipSave supports Instagram Reels and video posts. Paste the URL of a public Instagram video to download it as MP4. Private account videos cannot be downloaded. Instagram support may occasionally be unavailable depending on platform changes.
+              Instagram support is temporarily offline while we work around platform changes. In the meantime, ClipSave fully supports TikTok video downloads — paste a TikTok link above to get started.
             </p>
           </div>
         </div>

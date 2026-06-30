@@ -46,7 +46,7 @@ export default function UrlInput({ onSubmit, loading }) {
             value={url}
             onChange={e => setUrl(e.target.value)}
             onPaste={handleNativePaste}
-            placeholder="Paste a TikTok, Instagram or YouTube Shorts link…"
+            placeholder="Paste a TikTok or YouTube Shorts link…"
             autoComplete="off"
             autoCorrect="off"
             autoCapitalize="off"
