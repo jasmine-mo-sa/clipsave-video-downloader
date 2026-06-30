@@ -1,6 +1,7 @@
 const PLATFORM_LABELS = {
   tiktok: { label: 'TikTok', color: 'bg-black text-white' },
   instagram: { label: 'Instagram', color: 'bg-gradient-to-r from-purple-500 to-pink-500 text-white' },
+  youtube: { label: 'YouTube Shorts', color: 'bg-red-600 text-white' },
 }
 
 function fmtDuration(seconds) {

@@ -5,6 +5,7 @@
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ],
   "functions": {
-    "api/proxy.js": { "maxDuration": 60 }
+    "api/proxy.js": { "maxDuration": 60 },
+    "api/resolve.js": { "maxDuration": 30 }
   }
 }

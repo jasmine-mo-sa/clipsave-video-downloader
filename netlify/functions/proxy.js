@@ -20,8 +20,9 @@ exports.handler = async function (event) {
   try {
     const isTikwm = url.includes('tikwm.com')
     const isInstagram = url.includes('instagram.com') || url.includes('cdninstagram.com') || url.includes('fbcdn.net')
-    const referer = isTikwm ? 'https://www.tikwm.com/' : isInstagram ? 'https://www.instagram.com/' : 'https://www.tiktok.com/'
-    const origin  = isTikwm ? 'https://www.tikwm.com'  : isInstagram ? 'https://www.instagram.com' : 'https://www.tiktok.com'
+    const isYouTube = url.includes('googlevideo.com')
+    const referer = isTikwm ? 'https://www.tikwm.com/' : isInstagram ? 'https://www.instagram.com/' : isYouTube ? 'https://www.youtube.com/' : 'https://www.tiktok.com/'
+    const origin  = isTikwm ? 'https://www.tikwm.com'  : isInstagram ? 'https://www.instagram.com' : isYouTube ? 'https://www.youtube.com'  : 'https://www.tiktok.com'
 
     const response = await fetch(url, {
       headers: {

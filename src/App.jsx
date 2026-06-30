@@ -45,13 +45,13 @@ export default function App() {
             Free Video Downloader
           </h1>
           <p className="text-indigo-200 text-sm sm:text-base max-w-lg mx-auto">
-            Save TikTok videos without watermarks — free, instant, no account needed.
+            Save TikTok, Instagram Reels, and YouTube Shorts without watermarks — free, instant, no account needed.
           </p>
           <div className="pt-4">
             <UrlInput onSubmit={handleSubmit} loading={loading} />
           </div>
           <p className="text-indigo-300 text-xs pt-1">
-            Supports TikTok
+            Supports TikTok, Instagram Reels &amp; YouTube Shorts
           </p>
         </div>
       </div>
@@ -85,7 +85,7 @@ export default function App() {
               <div className="text-2xl mb-2">📋</div>
               <h3 className="font-semibold text-gray-800 mb-1 text-sm">1. Paste the link</h3>
               <p className="text-gray-500 text-xs leading-relaxed">
-                Copy the video URL from TikTok and paste it into the box above.
+                Copy the video URL from TikTok, Instagram, or YouTube Shorts and paste it into the box above.
               </p>
             </div>
             <div className="bg-white rounded-2xl border border-gray-200 p-5">
@@ -111,7 +111,7 @@ export default function App() {
             <div className="text-2xl mb-2">🚫</div>
             <h3 className="font-semibold text-gray-800 mb-1 text-sm">No Watermark</h3>
             <p className="text-gray-500 text-xs leading-relaxed">
-              Download clean, watermark-free versions of TikTok videos in HD quality.
+              Download clean, watermark-free TikTok, Instagram Reels, and YouTube Shorts videos in HD quality.
             </p>
           </div>
           <div className="bg-white rounded-2xl border border-gray-200 p-5">
@@ -133,16 +133,16 @@ export default function App() {
         {/* SEO content */}
         <div className="bg-white rounded-2xl border border-gray-200 p-6 space-y-4 text-xs text-gray-500 leading-relaxed">
           <div>
-            <h2 className="font-semibold text-gray-800 text-sm mb-1">How to download TikTok videos without watermark</h2>
+            <h2 className="font-semibold text-gray-800 text-sm mb-1">How to download TikTok, Instagram Reels, and YouTube Shorts without watermark</h2>
             <p>
-              TikTok adds a watermark with the creator's username to every video when you try to save it natively. ClipSave bypasses this by fetching the original video file directly — so you get a clean, high-definition MP4 with no logo or overlay.
+              TikTok and Instagram both add a watermark or overlay to videos when you save them natively. ClipSave bypasses this by fetching the original video file directly — so you get a clean, high-definition MP4 with no logo or overlay. YouTube Shorts downloads come straight from the source too.
             </p>
           </div>
           <div>
-            <h2 className="font-semibold text-gray-800 text-sm mb-1">How to copy a TikTok link</h2>
+            <h2 className="font-semibold text-gray-800 text-sm mb-1">How to copy a video link</h2>
             <ol className="list-decimal list-inside space-y-1">
-              <li>Open TikTok and find the video you want.</li>
-              <li>Tap the <strong>Share</strong> button (arrow icon).</li>
+              <li>Open TikTok, Instagram, or YouTube and find the video you want.</li>
+              <li>Tap the <strong>Share</strong> button.</li>
               <li>Tap <strong>Copy link</strong>.</li>
               <li>Paste the link into ClipSave above and click Download.</li>
             </ol>
@@ -162,15 +162,19 @@ export default function App() {
               <p>Yes. ClipSave works on any device with a web browser — iPhone, Android, Mac, and PC. No app download needed. On iPhone, after downloading, the video saves to your Files app; you can then move it to Photos.</p>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-700 mb-1">Why use ClipSave instead of the TikTok save button?</h3>
-              <p>TikTok's native save adds a watermark (your username overlay) to every video. ClipSave fetches the original source file so you get a clean, watermark-free MP4 — great for repurposing content or keeping a personal archive.</p>
+              <h3 className="font-semibold text-gray-700 mb-1">Why use ClipSave instead of the app's save button?</h3>
+              <p>TikTok and Instagram's native save adds a watermark or username overlay to videos. ClipSave fetches the original source file so you get a clean, watermark-free MP4 — great for repurposing content or keeping a personal archive.</p>
             </div>
             <div>
               <h3 className="font-semibold text-gray-700 mb-1">What video quality does ClipSave download?</h3>
-              <p>ClipSave fetches the highest-quality version available — typically HD (720p or 1080p) for TikTok videos, depending on how the creator uploaded them.</p>
+              <p>ClipSave fetches the highest-quality version available for each platform, depending on how the creator uploaded the video.</p>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-700 mb-1">Is it legal to download TikTok videos?</h3>
+              <h3 className="font-semibold text-gray-700 mb-1">Does ClipSave support Instagram and YouTube Shorts?</h3>
+              <p>Yes. ClipSave supports TikTok, public Instagram Reels and posts, and YouTube Shorts. Just paste any link from one of these platforms above.</p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-700 mb-1">Is it legal to download videos with ClipSave?</h3>
               <p>Downloading videos for personal use is generally fine. Always respect creators' rights — don't re-upload someone else's content without permission or claim it as your own.</p>
             </div>
           </div>
