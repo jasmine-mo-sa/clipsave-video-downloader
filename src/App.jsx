@@ -51,7 +51,7 @@ export default function App() {
             <UrlInput onSubmit={handleSubmit} loading={loading} />
           </div>
           <p className="text-indigo-300 text-xs pt-1">
-            Supports TikTok · Instagram (coming soon)
+            Supports TikTok
           </p>
         </div>
       </div>
@@ -146,12 +146,6 @@ export default function App() {
               <li>Tap <strong>Copy link</strong>.</li>
               <li>Paste the link into ClipSave above and click Download.</li>
             </ol>
-          </div>
-          <div>
-            <h2 className="font-semibold text-gray-800 text-sm mb-1">Instagram Reels downloader (coming soon)</h2>
-            <p>
-              Instagram support is temporarily offline while we work around platform changes. In the meantime, ClipSave fully supports TikTok video downloads — paste a TikTok link above to get started.
-            </p>
           </div>
         </div>
 
